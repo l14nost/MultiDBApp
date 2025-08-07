@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: MultiDBApp
+
+db:
+  data-sources:
+    - name: db-1
+      strategy: postgres
+      url: jdbc:postgresql://localhost:5432/multidbapp
+      table: users
+      user: postgres
+      password: postgres
+      mapping:
+        id: id
+        username: username_test
+        name: first_name
+        surname: last_name
