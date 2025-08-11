@@ -1,4 +1,4 @@
-package org.example.multidbapp.model.dataSource;
+package org.example.multidbapp.model.response.dataSource;
 
 import javax.sql.DataSource;
 

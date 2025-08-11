@@ -1,7 +1,7 @@
 package org.example.multidbapp.service.user;
 
 import org.example.multidbapp.model.GlobalResponse;
-import org.example.multidbapp.model.user.UserResponse;
+import org.example.multidbapp.model.response.user.UserResponse;
 
 import java.util.List;
 

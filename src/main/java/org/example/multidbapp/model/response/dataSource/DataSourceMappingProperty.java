@@ -1,4 +1,4 @@
-package org.example.multidbapp.model.dataSource;
+package org.example.multidbapp.model.response.dataSource;
 
 public record DataSourceMappingProperty(
     String id,

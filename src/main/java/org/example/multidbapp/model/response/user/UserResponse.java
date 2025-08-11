@@ -1,4 +1,4 @@
-package org.example.multidbapp.model.user;
+package org.example.multidbapp.model.response.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

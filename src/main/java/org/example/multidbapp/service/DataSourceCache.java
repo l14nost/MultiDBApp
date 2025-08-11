@@ -6,8 +6,8 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.example.multidbapp.model.dataSource.DataSourceFullResponse;
-import org.example.multidbapp.model.dataSource.DataSourceProperty;
+import org.example.multidbapp.model.response.dataSource.DataSourceFullResponse;
+import org.example.multidbapp.model.response.dataSource.DataSourceProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

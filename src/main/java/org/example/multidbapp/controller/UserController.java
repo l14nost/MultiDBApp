@@ -6,15 +6,17 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.multidbapp.mapper.ErrorMapper;
 import org.example.multidbapp.model.GlobalResponse;
-import org.example.multidbapp.model.user.UserResponse;
+import org.example.multidbapp.model.request.user.UserFilterRequest;
+import org.example.multidbapp.model.response.user.UserResponse;
 import org.example.multidbapp.service.user.UserService;
 import org.example.multidbapp.utils.swaggerAnnotation.OkResponse;
-import org.example.multidbapp.validator.UserValidator;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,7 +26,6 @@ import java.util.List;
 @Tag(name = "User")
 public class UserController {
     private final UserService userService;
-    private final UserValidator userValidator;
 
     @Operation(
             summary = "(Amir) Endpoint for get list of all users",
@@ -79,10 +80,10 @@ public class UserController {
             }
     )
     @GetMapping("/users-by-filter")
-    public ResponseEntity<GlobalResponse<?>> getAllUsersByFilter(@RequestParam String filter){
-        if (!userValidator.isValidFilterValue(filter)){
-            return ResponseEntity.badRequest().body(new GlobalResponse<>(false, "Filter cannot be more than 100 characters"));
+    public ResponseEntity<GlobalResponse<?>> getAllUsersByFilter(@Valid UserFilterRequest request, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return ResponseEntity.badRequest().body(new GlobalResponse<>(false, ErrorMapper.mapBindingResult(bindingResult)));
         }
-        return ResponseEntity.ok(userService.getAllUsersWithFilter(filter));
+        return ResponseEntity.ok(userService.getAllUsersWithFilter(request.filter()));
     }
 }
