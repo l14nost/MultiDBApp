@@ -6,7 +6,7 @@ db:
   data-sources:
     - name: db-1
       strategy: postgres
-      url: jdbc:postgresql://localhost:5432/multidbapp
+      url: jdbc:postgresql://app-db-1:5432/multidbapp
       table: users
       user: postgres
       password: postgres
@@ -18,7 +18,7 @@ db:
 
     - name: db-2
       strategy: postgres
-      url: jdbc:postgresql://localhost:5432/multidbapp1
+      url: jdbc:postgresql://app-db-2:5432/multidbapp1
       table: staff
       user: postgres
       password: postgres
@@ -30,7 +30,7 @@ db:
 
     - name: db-3
       strategy: mysql
-      url: jdbc:mysql://localhost:3306/multidbapp
+      url: jdbc:mysql://app-db-3:3306/multidbapp
       table: users-mysql
       user: user
       password: user

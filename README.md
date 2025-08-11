@@ -72,3 +72,8 @@ mvn clean install
 ```bash
 mvn spring-boot:run
 ```
+
+### 5. Run with Docker
+```bash
+docker-compose up --build
+```

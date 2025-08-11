@@ -1,27 +1,46 @@
 version: "3.8"
 
+networks:
+  multi-db-network:
+
 services:
   app-db-1:
     image: postgres
     container_name: app-db-1
+    ports:
+      - target: 5432
+        published: 5433
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: multidbapp
+    networks:
+      - multi-db-network
   app-db-2:
     image: postgres
     container_name: app-db-2
+    ports:
+      - target: 5432
+        published: 5432
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: multidbapp1
+    networks:
+      - multi-db-network
   app-db-3:
     image: mysql
     container_name: app-db-3
+    ports:
+      - target: 3306
+        published: 3307
     environment:
       MYSQL_PASSWORD: user
       MYSQL_USER: user
       MYSQL_DATABASE: multidbapp
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - multi-db-network
   app:
     build: .
     container_name: app
@@ -32,3 +51,5 @@ services:
     ports:
       - target: 8080
         published: 8080
+    networks:
+      - multi-db-network
